@@ -11,6 +11,7 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 
 ## Tools And Frameworks
 - [WFDB](https://wfdb.readthedocs.io/en/latest/)
+- [Librosa](https://librosa.org/doc/latest/index.html)
 - [Pytorch](https://pytorch.org/)
 - [Pandas](https://pandas.pydata.org/)
 - [Seaborn](https://seaborn.pydata.org/)
