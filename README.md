@@ -7,7 +7,7 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 ## Type of problem
 
 1. Classification problem
-2. Supervised Learing problem.
+2. Supervised Learning problem.
 
 ## Tools And Frameworks
 - [WFDB](https://wfdb.readthedocs.io/en/latest/)
