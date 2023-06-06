@@ -61,3 +61,8 @@ We will be using CNNs for images primarily
 - [ ] Train the data to creat a deep learning model
 - [ ] Test the deep learning model with unseen data
 - [ ] Containerise Model for use with streamlit for easy future testing.
+
+## Questions
+1. What is suppose to be the buffer size of the signal that we take?
+2. How many classes do we consider?
+
