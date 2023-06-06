@@ -17,6 +17,9 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 - [Seaborn](https://seaborn.pydata.org/)
 
 ## Approaches
+
+### Dimensionality Reduction Techniques
+1. Principal Component Analysis
 ### Hyperparameter Tuning Approaches
 1. Grid Search 
 2. Random Search
@@ -38,6 +41,7 @@ We will be surveying the following algorithms in the is project:
 3. K-Nearest Neighbors
 4. Decision Tree
 5. Support Vector Machines
+6. Random Forest
 
 ### Deep Learning Approaches
 
