@@ -17,6 +17,10 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 - [Seaborn](https://seaborn.pydata.org/)
 
 ## Approaches
+### Hyperparameter Tuning Approaches
+1. Grid Search 
+2. Random Search
+3. Bayesian Optimization
 
 ### Machine learning signal pre-processing techniques
 We will be using the following pre-processing techniques:
