@@ -105,5 +105,14 @@ We will be using CNNs for images primarily
 ## Questions
 1. What is suppose to be the buffer size of the signal that we take?
 2. How many classes do we consider?
+
+>> Based on this paper [here](https://www.researchgate.net/publication/339910895_Arrhythmia_Detection_-_A_Machine_Learning_based_Comparative_Analysis_with_MIT-BIH_ECG_Data/link/6135bf7338818c2eaf85ce59/download), there are five classes considered:
+
+- Normal (N)
+- Paced Beat (/)
+- Right Bundle Branch Block Beat (R)
+- Left Bundle Branch Block (L)
+
+The following are the classes described in the paper
 3. Do we always extract the QRS complex?
 
