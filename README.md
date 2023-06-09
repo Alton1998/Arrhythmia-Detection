@@ -21,7 +21,45 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 ## Approaches
 
 ### Dimensionality Reduction Techniques
-1. Principal Component Analysis
+There are many dimensionality reduction methods, but some of the most common include:
+
+* **Principal component analysis (PCA)** is a linear dimensionality reduction method that projects data points onto a lower-dimensional subspace in such a way that the variance of the data in the new space is maximized. This means that PCA finds the directions in the data that have the most variation, and projects the data points onto those directions.
+* **Factor analysis (FA)** is another linear dimensionality reduction method that is similar to PCA. However, FA is designed to find latent factors that explain the variation in the data. These factors are not necessarily orthogonal, as they can be correlated with each other.
+* **Linear discriminant analysis (LDA)** is a linear dimensionality reduction method that is specifically designed for classification tasks. LDA projects data points onto a lower-dimensional subspace in such a way that the classes are as well-separated as possible.
+* **Non-negative matrix factorization (NMF)** is a nonlinear dimensionality reduction method that is often used for text analysis. NMF decomposes a matrix into two matrices, where the rows of the first matrix represent the original data points and the columns of the second matrix represent the latent factors.
+* **Sparse coding** is a nonlinear dimensionality reduction method that is often used for image analysis. Sparse coding decomposes an image into a set of basis images, where each basis image is weighted by a coefficient. The coefficients are typically sparse, meaning that most of them are zero.
+
+These are just a few of the many dimensionality reduction methods that are available. The best method to use for a particular task will depend on the nature of the data and the goals of the analysis.
+
+Here are some of the benefits of using dimensionality reduction methods:
+
+* **Reduced computational complexity:** When you reduce the dimensionality of your data, you also reduce the computational complexity of tasks such as clustering, classification, and regression. This can be a major advantage when you are working with large datasets.
+* **Improved visualization:** When you reduce the dimensionality of your data, you can often visualize it more easily. This can be helpful for understanding the relationships between different variables and for identifying patterns in the data.
+* **Improved performance:** In some cases, dimensionality reduction can actually improve the performance of machine learning models. This is because dimensionality reduction can help to remove noise from the data and to make the data more regular.
+
+However, there are also some potential drawbacks to using dimensionality reduction methods:
+
+* **Loss of information:** When you reduce the dimensionality of your data, you lose some of the information in the original data. This can be a problem if the information that is lost is important for the task that you are trying to perform.
+* **Data distortion:** In some cases, dimensionality reduction can distort the data. This can make it more difficult to interpret the results of your analysis.
+* **Overfitting:** If you reduce the dimensionality of your data too much, you can end up overfitting your model to the training data. This can lead to poor performance on the test data.
+
+Overall, dimensionality reduction can be a powerful tool for data analysis. However, it is important to be aware of the potential drawbacks of these methods before using them.
+
+### Loss Function Techniques
+
+Sure, here are some of the most common loss functions used in machine learning:
+
+* **Mean squared error (MSE):** This is the most common loss function for regression problems. It measures the squared difference between the predicted values and the actual values.
+* **Mean absolute error (MAE):** This is another common loss function for regression problems. It measures the absolute difference between the predicted values and the actual values.
+* **Cross-entropy loss:** This is the most common loss function for classification problems. It measures the difference between the predicted probabilities and the actual labels.
+* **Hinge loss:** This is a loss function that is often used for support vector machines. It measures the distance between the decision boundary and the data points.
+* **Huber loss:** This is a loss function that is less sensitive to outliers than MSE. It is often used for regression problems where there may be outliers in the data.
+* **Logistic loss:** This is a loss function that is often used for logistic regression. It measures the log-likelihood of the data given the model parameters.
+
+The best loss function to use for a particular problem will depend on the nature of the data and the goals of the model. For example, MSE is often a good choice for regression problems where the data is normally distributed. Cross-entropy loss is often a good choice for classification problems where the classes are well-separated.
+
+It is important to note that loss functions are not always used to train machine learning models. In some cases, they can be used to evaluate the performance of a model after it has been trained. For example, you might use MSE to evaluate the accuracy of a regression model.
+
 ### Hyperparameter Tuning Approaches
 1. Grid Search 
 2. Random Search
@@ -67,4 +105,5 @@ We will be using CNNs for images primarily
 ## Questions
 1. What is suppose to be the buffer size of the signal that we take?
 2. How many classes do we consider?
+3. Do we always extract the QRS complex?
 
