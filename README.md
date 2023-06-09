@@ -129,4 +129,5 @@ We will be using CNNs for images primarily
 | How many classes do we consider?          |       Refer [this](./references/Arrhythmia_Detection_-_A_Machine_Learning_based_Comparative_Analysis_with_MIT-BIH_ECG_Data.pdf) |
 |Do we always extract the QRS complex? | |
 |What are we looking for in an ECG Data?|
+|Do we Normalize or standardise the data the data?|| 
 
