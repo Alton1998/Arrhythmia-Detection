@@ -47,7 +47,7 @@ Overall, dimensionality reduction can be a powerful tool for data analysis. Howe
 
 ### Loss Function Techniques
 
-Sure, here are some of the most common loss functions used in machine learning:
+Here are some of the most common loss functions used in machine learning:
 
 * **Mean squared error (MSE):** This is the most common loss function for regression problems. It measures the squared difference between the predicted values and the actual values.
 * **Mean absolute error (MAE):** This is another common loss function for regression problems. It measures the absolute difference between the predicted values and the actual values.
