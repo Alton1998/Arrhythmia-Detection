@@ -4,7 +4,20 @@
 
 We will be using the [MIT data](https://archive.physionet.org/physiobank/database/html/mitdbdir/mitdbdir.htm) to train a model to detect Arrhythmias.
 
-## Summary of the data after Analyzing.
+## Summary of the data after analyzing.
+
+- **No. of records**: 48
+- **Frequency** : 360 samples per second
+- **Distribution**: 25 male subjects between the ages of 32 and 89, 22 female subjects aged from 23 to 89 years. 60% of the total subjects were inpatient.
+
+## Aim
+We will focus on classification of 5 classes, namely:
+
+1. Normal (N)
+2. Paced Beat (/)
+3. Right Bundle Branch Block Beat (R).
+4. Left Bundle Branch Block (L).
+5. Premature Ventricular Beat (V)
 
 ## Type of problem
 
@@ -17,6 +30,12 @@ We will be using the [MIT data](https://archive.physionet.org/physiobank/databas
 - [Pytorch](https://pytorch.org/)
 - [Pandas](https://pandas.pydata.org/)
 - [Seaborn](https://seaborn.pydata.org/)
+
+## Steps to Implement in Code
+1. Break each record into fragments by detecting the peaks and taking a window before and after the peak
+2. Tranform the peak into feature vectors such that the number of dimensions is less than the original
+3. Fit the data to a model
+4. Report metrics
 
 ## Approaches
 
@@ -70,7 +89,7 @@ We will be using the following pre-processing techniques:
 
 1. Fast Fourier Transform
 2. Discrete Wavelet Transform
-
+3. Calculate Feature Vectors by Simpsons Rule.
 Deep learning will not require pre-processing since it is meant to learn features by itself, we will however experiment and see the results.
 ### Machine Learning Approaches
 
@@ -103,16 +122,11 @@ We will be using CNNs for images primarily
 - [ ] Containerise Model for use with streamlit for easy future testing.
 
 ## Questions
-1. What is suppose to be the buffer size of the signal that we take?
-2. How many classes do we consider?
 
->> Based on this paper [here](https://www.researchgate.net/publication/339910895_Arrhythmia_Detection_-_A_Machine_Learning_based_Comparative_Analysis_with_MIT-BIH_ECG_Data/link/6135bf7338818c2eaf85ce59/download), there are five classes considered:
-
-- Normal (N)
-- Paced Beat (/)
-- Right Bundle Branch Block Beat (R)
-- Left Bundle Branch Block (L)
-
-The following are the classes described in the paper
-3. Do we always extract the QRS complex?
+| Question     | Answers |
+| ----------- | ----------- |
+| What is suppose to be the buffer size of the signal that we take?     |        |
+| How many classes do we consider?          |       Refer [this](./references/Arrhythmia_Detection_-_A_Machine_Learning_based_Comparative_Analysis_with_MIT-BIH_ECG_Data.pdf) |
+|Do we always extract the QRS complex? | |
+|What are we looking for in an ECG Data?|
 
