@@ -40,8 +40,11 @@ class ECGRecord:
 
     def patient_age(self) -> int:
         age: int = int(self.__record.comments[0].split(" ")[0])
-
         return age
+
+    def patient_gender(self) -> str:
+        gender: str = self.__record.comments[0].split(" ")[1]
+        return gender
 
     def comments(self) -> list[str]:
         return self.__record.comments

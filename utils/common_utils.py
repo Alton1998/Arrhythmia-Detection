@@ -8,7 +8,7 @@ def load_patient_ids(dir: str) -> list:
     return list(patient_ids)
 
 
-def calculate_index(x: float, xmin: float, delta: float) -> round:
+def calculate_index(x: float, xmin: float, delta: float) -> np.ndarray:
     range: float = np.round(x - xmin, decimals=2)
     index: float = np.round(range / delta, decimals=2)
-    return np.round(index)
+    return np.ceil(index)
