@@ -30,6 +30,7 @@ We will focus on classification of 5 classes, namely:
 - [Pytorch](https://pytorch.org/)
 - [Pandas](https://pandas.pydata.org/)
 - [Seaborn](https://seaborn.pydata.org/)
+- [py-ecg-detector](https://pypi.org/project/py-ecg-detectors/)
 
 ## Steps to Implement in Code
 1. Break each record into fragments by detecting the peaks and taking a window before and after the peak
@@ -130,4 +131,11 @@ We will be using CNNs for images primarily
 |Do we always extract the QRS complex? | |
 |What are we looking for in an ECG Data?|
 |Do we Normalize or standardise the data the data?|| 
+
+
+## Resources 
+
+- https://realpython.com/python-scipy-fft/
+- https://swharden.com/blog/2020-09-23-signal-filtering-in-python/
+- https://danielmuellerkomorowska.com/2020/06/02/smoothing-data-by-rolling-average-with-numpy/
 
