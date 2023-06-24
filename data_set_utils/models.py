@@ -63,9 +63,10 @@ class ECGRecord:
 
     def annotation_indexes(self) -> list[int]:
         return self.__annotation.sample
-    
+
     def leads(self) -> list[str]:
         return self.__record.sig_name
+
 
 class ECGSegment:
     def __init__(self) -> None:
