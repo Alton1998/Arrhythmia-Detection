@@ -69,5 +69,38 @@ class ECGRecord:
 
 
 class ECGSegment:
-    def __init__(self) -> None:
-        pass
+    def __init__(
+        self, record_id: str, segment_start: int, segment_end: int, target_class: str, readings:np.ndarray
+    ) -> None:
+        self.__record_id = record_id
+        self.__segment_start = segment_start
+        self.__segment_end = segment_end
+        self.__target_class = target_class
+        self.__readings = readings
+
+    def get_target_class(self) -> str:
+        return self.__target_class
+    
+    def get_record_id(self) ->str:
+        return self.__record_id
+    
+    def get_segment_positions(self)->str:
+        return (self.__segment_start,self.__segment_end)
+    
+
+    def get_readings(self)->str:
+        return self.__readings
+    
+    def __str__(self) -> str:
+        "Record Id: " + self.__record_id + "\n" + "Start:" + self.__segment_start + "\n" + "End:" + self.__segment_end + "\n"
+
+class ECGAnnotation:
+    def __init__(self,pos:int,symbol:str) -> None:
+        self.__pos = pos
+        self.__symbol = symbol
+    
+    def get_pos(self)->int:
+        return self.__pos
+    
+    def get_symbol(self)->str:
+        return self.__symbol

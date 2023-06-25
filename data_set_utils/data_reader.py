@@ -30,19 +30,25 @@ class DataReader:
     def __record_path(self, record_id: str) -> str:
         return self.__dir + "/" + record_id
 
-    def plot_record(self, record_id: str, sampto: int) -> None:
+    def plot_record(self, record_id: str, sampto: int, sampfrom: int = 0) -> None:
         path: str = self.__record_path(record_id)
         try:
-            record: Union[Record, MultiRecord] = wfdb.rdrecord(path, sampto=sampto)
-            annotation: Annotation = wfdb.rdann(path, "atr", sampto=sampto)
+            record: Union[Record, MultiRecord] = wfdb.rdrecord(
+                path, sampfrom=sampfrom, sampto=sampto
+            )
+            annotation: Annotation = wfdb.rdann(
+                path, "atr", sampfrom=sampfrom, sampto=sampto
+            )
             wfdb.plot_wfdb(record=record, annotation=annotation, plot_sym=True)
         except Exception as e:
             raise DataSetReaderException(f"Record {record_id} is not good", e)
 
-    def plot_records(self, record_ids: list[str], sampto: int) -> None:
+    def plot_records(
+        self, record_ids: list[str], sampto: int, sampfrom: int = 0
+    ) -> None:
         for record_id in record_ids:
             try:
-                self.plot_record(record_id, sampto)
+                self.plot_record(record_id, sampto, sampfrom)
             except DataSetReaderException as e:
                 print(e)
 

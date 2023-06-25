@@ -31,11 +31,17 @@ def remove_powerline_interference(
     yf[yf_indexes] = 0
     return irfft(yf)
 
-def high_pass_filter(data:np.ndarray,cut_of_freq:float,order:int=3,fs:float=360)->np.ndarray:
-    b, a = scipy.signal.butter(order, cut_of_freq, 'highpass',fs=fs)
+
+def high_pass_filter(
+    data: np.ndarray, cut_of_freq: float, order: int = 3, fs: float = 360
+) -> np.ndarray:
+    b, a = scipy.signal.butter(order, cut_of_freq, "highpass", fs=fs)
     return scipy.signal.filtfilt(b, a, data)
 
-def hanning_filter(data:np.ndarray,windowSize:int=10,mode:str="same")->np.ndarray:
+
+def hanning_filter(
+    data: np.ndarray, windowSize: int = 10, mode: str = "same"
+) -> np.ndarray:
     window = np.hanning(windowSize)
     window = window / window.sum()
     return np.convolve(window, data, mode=mode)
