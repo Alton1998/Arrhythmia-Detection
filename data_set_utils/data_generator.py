@@ -43,7 +43,7 @@ class DataMaker:
         ecg_signal = record.ecg_signal()
         lead_signal = ecg_signal[:, signal_index]
         return lead_signal
-    
+
     @staticmethod
     def clean_signal(
         signal: np.ndarray,
@@ -87,28 +87,39 @@ class DataMaker:
                 segment_start,
                 segment_end,
                 readings=signal[segment_start:segment_end],
-                target_classes = list()
+                target_classes=list(),
             )
             ecg_segments.append(ecg_segment)
 
         return ecg_segments
-    
+
     @staticmethod
-    def add_target_classes(annotation_symbols:np.ndarray,annotation_indexes,segments:list[ECGSegment],record_id:str) -> None:
-        for annotation_symbol, annotation_index in zip(annotation_symbols,annotation_indexes):
-            annotation = ECGAnnotation(annotation_index,annotation_symbol)
+    def add_target_classes(
+        annotation_symbols: np.ndarray,
+        annotation_indexes,
+        segments: list[ECGSegment],
+        record_id: str,
+    ) -> None:
+        for annotation_symbol, annotation_index in zip(
+            annotation_symbols, annotation_indexes
+        ):
+            annotation = ECGAnnotation(annotation_index, annotation_symbol)
             for segment in segments:
-                start , end = segment.get_segment_positions()
-                if annotation.get_pos() >= start and annotation.get_pos() <= end and segment.get_record_id() == record_id:
+                start, end = segment.get_segment_positions()
+                if (
+                    annotation.get_pos() >= start
+                    and annotation.get_pos() <= end
+                    and segment.get_record_id() == record_id
+                ):
                     segment.add_annotation(annotation)
                     break
 
-    def perform_segmentation(self,symbols:list[str])->list[ECGSegment]:
+    def perform_segmentation(self, symbols: list[str]) -> list[ECGSegment]:
         segments = []
         for record in self.__records:
             signal = DataMaker.get_lead_signal(record, self.__signal_name)
-            if not len(signal)>0:
-                print(f'No {self.__signal_name} for {record.record_name()}')
+            if not len(signal) > 0:
+                print(f"No {self.__signal_name} for {record.record_name()}")
                 continue
             clean_signal = DataMaker.clean_signal(
                 signal,
@@ -119,16 +130,17 @@ class DataMaker:
                 self.__error,
             )
             segments_for_record = DataMaker.segment_signal(
-                    self.__before_peak,
-                    self.__after_peak,
-                    clean_signal,
-                    record.record_name(),
-                    self.__sampling_freq,
-                )
-            DataMaker.add_target_classes(record.annotations_present(),record.annotation_indexes(),segments_for_record,record.record_name())
-            segments.extend(
-                segments_for_record
+                self.__before_peak,
+                self.__after_peak,
+                clean_signal,
+                record.record_name(),
+                self.__sampling_freq,
             )
+            DataMaker.add_target_classes(
+                record.annotations_present(),
+                record.annotation_indexes(),
+                segments_for_record,
+                record.record_name(),
+            )
+            segments.extend(segments_for_record)
         return segments
-    
-

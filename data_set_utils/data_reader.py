@@ -37,7 +37,7 @@ class DataReader:
                 path, sampfrom=sampfrom, sampto=sampto
             )
             annotation: Annotation = wfdb.rdann(
-                path, "atr", sampfrom=sampfrom, sampto=sampto,shift_samps=True
+                path, "atr", sampfrom=sampfrom, sampto=sampto, shift_samps=True
             )
             wfdb.plot_wfdb(record=record, annotation=annotation, plot_sym=True)
         except Exception as e:
