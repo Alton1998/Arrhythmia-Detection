@@ -26,9 +26,9 @@ def remove_powerline_interference(
 ) -> np.ndarray:
     yf = rfft(array)
     xf = rfftfreq(len(array), 1 / sampling_rate)
-    yf_indexes = np.where((xf > (freq - error)) & (xf < (freq + error)))
-    print(yf_indexes)
-    yf[yf_indexes] = 0
+    yf_indexes = np.where((xf > (freq - error)) & (xf < (freq + error)))[0]
+    for i in yf_indexes:
+        yf[i] = 0
     return irfft(yf)
 
 
