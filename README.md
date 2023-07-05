@@ -31,6 +31,7 @@ We will focus on classification of 5 classes, namely:
 - [Pandas](https://pandas.pydata.org/)
 - [Seaborn](https://seaborn.pydata.org/)
 - [py-ecg-detector](https://pypi.org/project/py-ecg-detectors/)
+- [imbalanced-learn](https://imbalanced-learn.org/stable/)
 
 ## Steps to Implement in Code
 1. Break each record into fragments by detecting the peaks and taking a window before and after the peak
@@ -138,4 +139,6 @@ We will be using CNNs for images primarily
 - https://realpython.com/python-scipy-fft/
 - https://swharden.com/blog/2020-09-23-signal-filtering-in-python/
 - https://danielmuellerkomorowska.com/2020/06/02/smoothing-data-by-rolling-average-with-numpy/
+- https://refactored.ai/microcourse/notebook?path=content%2F06-Classification_models_in_Machine_Learning%2F02-Multivariate_Logistic_Regression%2Fmulticlass_logistic-regression.ipynb
+- https://machinelearningmastery.com/random-oversampling-and-undersampling-for-imbalanced-classification/
 
