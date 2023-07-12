@@ -127,11 +127,11 @@ We will be using CNNs for images primarily
 
 | Question     | Answers |
 | ----------- | ----------- |
-| What is suppose to be the buffer size of the signal that we take?     |        |
+| What is suppose to be the buffer size of the signal that we take?     |  200      |
 | How many classes do we consider?          |       Refer [this](./references/Arrhythmia_Detection_-_A_Machine_Learning_based_Comparative_Analysis_with_MIT-BIH_ECG_Data.pdf) |
-|Do we always extract the QRS complex? | |
-|What are we looking for in an ECG Data?|
-|Do we Normalize or standardise the data the data?|| 
+|Do we always extract the QRS complex? | Yes |
+|What are we looking for in an ECG Data?| Leverage AI to extract features|
+|Do we Normalize or standardise the data the data?| Yes | 
 
 
 ## Resources 
