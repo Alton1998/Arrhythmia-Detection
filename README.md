@@ -142,3 +142,7 @@ We will be using CNNs for images primarily
 - https://refactored.ai/microcourse/notebook?path=content%2F06-Classification_models_in_Machine_Learning%2F02-Multivariate_Logistic_Regression%2Fmulticlass_logistic-regression.ipynb
 - https://machinelearningmastery.com/random-oversampling-and-undersampling-for-imbalanced-classification/
 
+## Processed Data
+
+https://drive.google.com/file/d/1ANq9kiWBsPsQpmsfJ-v4fpOMn0lEKypv/view?usp=sharing
+
