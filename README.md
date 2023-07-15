@@ -4,6 +4,10 @@
 
 We will be using the [MIT data](https://archive.physionet.org/physiobank/database/html/mitdbdir/mitdbdir.htm) to train a model to detect Arrhythmias.
 
+## Summary of Project
+
+We are using the ECG data collected by BIH and MIT, to see the distribution of the data you can check the 
+
 ## Summary of the data after analyzing.
 
 - **No. of records**: 48
