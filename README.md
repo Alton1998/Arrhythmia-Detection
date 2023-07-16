@@ -149,4 +149,5 @@ We will be using CNNs for images primarily
 ## Processed Data
 
 https://drive.google.com/file/d/1ANq9kiWBsPsQpmsfJ-v4fpOMn0lEKypv/view?usp=sharing
+https://drive.google.com/file/d/172AuH8_z3QHf5fENlBrIuW70Ndhk3E--/view?usp=drive_link [DL pupose]
 
