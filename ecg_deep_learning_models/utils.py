@@ -4,6 +4,7 @@ import time
 from torch.utils.data import DataLoader, TensorDataset
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report,confusion_matrix
 
 
 def count_parameters(model):
@@ -183,6 +184,8 @@ def eval_model(model, X_test, y_test):
             loss = criterion(y_val, y_ts)
             total_loss += loss.item()
             total_correct += (predicted == y_ts).sum().item()
+            print(classification_report(predicted,y_ts))
+            print(confusion_matrix(predicted,y_ts))
 
     test_accuracy = (total_correct / len(test_data_set)) * 100
     test_mean_loss = total_loss / len(test_data_loader)
