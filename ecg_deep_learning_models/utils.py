@@ -5,6 +5,8 @@ from torch.utils.data import DataLoader, TensorDataset
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report,confusion_matrix
+from ptflops import get_model_complexity_info
+import re
 
 
 def count_parameters(model):
@@ -201,3 +203,13 @@ def eval_model(model, X_test, y_test,lstm=False):
     test_mean_loss = total_loss / len(test_data_loader)
     print(f"\nDuration: {time.time() - start:.0f} seconds")
     return (test_accuracy, test_mean_loss)
+
+def profile(model,shape):
+    macs,params = get_model_complexity_info(model=model,input_res=shape,verbose=True)
+    flops = eval(re.findall(r'([\d.]+)', macs)[0])*2
+    # Extract the unit
+    flops_unit = re.findall(r'([A-Za-z]+)', macs)[0][0]
+
+    print('Computational complexity: {:<8}'.format(macs))
+    print('Computational complexity: {} {}Flops'.format(flops, flops_unit))
+    print('Number of parameters: {:<8}'.format(params))

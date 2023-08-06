@@ -1,0 +1,1 @@
+Op LSTM is not supported at now, set FLOPs of it to zero.
