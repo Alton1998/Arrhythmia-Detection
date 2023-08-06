@@ -60,29 +60,30 @@ class ECGCNNModel(nn.Module):
         return x
 
 class ECGLSTMModel(nn.Module):
-    def __init__(self,input_size=200,hidden_size=50,fc_layers=[25],p=0.5,out_size=5):
+    def __init__(self, input_size=200, hidden_size=50, num_layers=2, num_classes=5,fc_layers=[25],p=0.5):
         super().__init__()
-        lstm_layer = []
-        fc_layer = []
-
-        lstm_layer.append(nn.LSTM(input_size=input_size,hidden_size=hidden_size,num_layers=1, batch_first=True))
-
-        n_in = hidden_size
+        self.hidden_size = hidden_size
+        self.num_layers = num_layers
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        fc_layer_list = []
+        n_in = self.hidden_size
+        fc_layer_list.append(nn.Flatten())
         for i in fc_layers:
-            fc_layer.append(nn.Linear(n_in,i))
-            fc_layer.append(nn.ReLU(inplace=True))
-            fc_layer.append(nn.Dropout(p))
-        
-        fc_layer.append(fc_layer[-1],out_size)
+            fc_layer_list.append(nn.Linear(n_in,i))
+            fc_layer_list.append(nn.ReLU(inplace=True))
+            fc_layer_list.append(nn.Dropout(p))
+            n_in=i
 
-        self.hidden = (torch.zeros(1,1,hidden_size),
-                       torch.zeros(1,1,hidden_size))
-        self.lstm = nn.Sequential(*lstm_layer)
-        self.fc = nn.Sequential(*fc_layer)
+        fc_layer_list.append(nn.Linear(fc_layers[-1],num_classes))
+        self.fc =nn.Sequential(*fc_layer_list)
 
-        
-    def forward(self,x):
-        lstm_out, self.hidden = self.lstm(
-            x, self.hidden)
-        pred = self.fc(lstm_out)
-        return pred
+    def forward(self, x):
+        h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device=x.device)
+        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device=x.device)
+
+        out, _ = self.lstm(x, (h0, c0))
+
+        out = self.fc(out)
+      
+
+        return out

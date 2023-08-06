@@ -50,14 +50,22 @@ def train_model(
 
         for b, (X_tr, y_tr) in enumerate(train_loader):
             b += 1
-            y_pred = model(X_tr)
-            loss = criterion(y_pred, y_tr)
-            total_train_loss += loss.item()
-            predicted = torch.max(y_pred.data, 1)[1]
-            batch_corr = (predicted == y_tr).sum()
-            trn_corr += batch_corr
+            if not lstm:
+                y_pred = model(X_tr)
+                loss = criterion(y_pred, y_tr)
+                total_train_loss += loss.item()
+                predicted = torch.max(y_pred.data, 1)[1]
+                batch_corr = (predicted == y_tr).sum()
+                trn_corr += batch_corr
 
             optimizer.zero_grad()
+            if lstm:
+                y_pred = model(X_tr)
+                loss = criterion(y_pred, y_tr)
+                total_train_loss += loss.item()
+                predicted = torch.max(y_pred.data, 1)[1]
+                batch_corr = (predicted == y_tr).sum()
+                trn_corr += batch_corr
             loss.backward()
             optimizer.step()
 
@@ -171,7 +179,8 @@ def show_metrics(
     plt.show()
 
 
-def eval_model(model, X_test, y_test):
+def eval_model(model, X_test, y_test,lstm=False):
+    start = time.time()
     model.eval()
     test_data_set = TensorDataset(X_test, y_test)
     test_data_loader = DataLoader(test_data_set, len(test_data_set), shuffle=True)
@@ -190,4 +199,5 @@ def eval_model(model, X_test, y_test):
 
     test_accuracy = (total_correct / len(test_data_set)) * 100
     test_mean_loss = total_loss / len(test_data_loader)
+    print(f"\nDuration: {time.time() - start:.0f} seconds")
     return (test_accuracy, test_mean_loss)
