@@ -25,6 +25,7 @@ def train_model(
     batch_size=32,
     val_batch_size=32,
     tolerance=25,
+    lstm=False
 ):
     train_dataset = TensorDataset(X_train, y_train)
     train_loader = DataLoader(train_dataset, batch_size, shuffle=True)

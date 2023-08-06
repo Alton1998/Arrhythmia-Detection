@@ -24,52 +24,26 @@ class ECGANNModel(nn.Module):
         x = self.layers(x)
         return x
 
-
 class ECGCNNModel(nn.Module):
-    def __init__(
-        self,
-        fc_layers=[100, 50],
-        kernel_size=3,
-        stride=1,
-        max_pool_size=2,
-        input_dim=200,
-        out_sz=5,
-        p=0.5,
-    ):
+    def __init__(self,fc_layers=[100,50],kernel_size=3,stride=1,max_pool_size=2,input_dim=200,out_sz=5,p=0.5):
         super().__init__()
         cnn_layer_list = []
         fc_layer_list = []
-        cnn_layer_list.append(
-            nn.Conv1d(
-                in_channels=1, out_channels=16, kernel_size=kernel_size, stride=stride
-            )
-        )
+        cnn_layer_list.append(nn.Conv1d(in_channels=1,out_channels=16,kernel_size=kernel_size,stride=stride))
         cnn_layer_list.append(nn.ReLU(inplace=True))
-        cnn_layer_list.append(
-            nn.Conv1d(
-                in_channels=16, out_channels=32, kernel_size=kernel_size, stride=stride
-            )
-        )
+        cnn_layer_list.append(nn.Conv1d(in_channels=16,out_channels=32,kernel_size=kernel_size,stride=stride))
         cnn_layer_list.append(nn.ReLU(inplace=True))
-        cnn_layer_list.append(nn.MaxPool1d(max_pool_size, stride=stride))
+        cnn_layer_list.append(nn.MaxPool1d(max_pool_size,stride=stride))
         cnn_layer_list.append(nn.BatchNorm1d(32))
-        cnn_layer_list.append(
-            nn.Conv1d(
-                in_channels=32, out_channels=64, kernel_size=kernel_size, stride=stride
-            )
-        )
+        cnn_layer_list.append(nn.Conv1d(in_channels=32,out_channels=64,kernel_size=kernel_size,stride=stride))
         cnn_layer_list.append(nn.ReLU(inplace=True))
-        cnn_layer_list.append(
-            nn.Conv1d(
-                in_channels=64, out_channels=128, kernel_size=kernel_size, stride=stride
-            )
-        )
+        cnn_layer_list.append(nn.Conv1d(in_channels=64,out_channels=128,kernel_size=kernel_size,stride=stride))
         cnn_layer_list.append(nn.ReLU(inplace=True))
-        cnn_layer_list.append(nn.MaxPool1d(max_pool_size, stride=stride))
+        cnn_layer_list.append(nn.MaxPool1d(max_pool_size,stride=stride))
         cnn_layer_list.append(nn.BatchNorm1d(128))
         cnn_layer_list.append(nn.Flatten())
         self.conv_layer = nn.Sequential(*cnn_layer_list)
-        n_in = 128 * 190
+        n_in = 128 *190
         for i in fc_layers:
             fc_layer_list.append(nn.Linear(n_in, i))
             fc_layer_list.append(nn.ReLU(inplace=True))
@@ -80,17 +54,35 @@ class ECGCNNModel(nn.Module):
 
         self.fc_layers = nn.Sequential(*fc_layer_list)
 
-    def forward(self, x):
+    def forward(self,x):
         x = self.conv_layer(x)
         x = self.fc_layers(x)
         return x
 
-
 class ECGLSTMModel(nn.Module):
-    def __init__(
-        self,
-    ):
+    def __init__(self,input_size=200,hidden_size=50,fc_layers=[25],p=0.5,out_size=5):
         super().__init__()
+        lstm_layer = []
+        fc_layer = []
 
-    def forward(self):
-        pass
+        lstm_layer.append(nn.LSTM(input_size=input_size,hidden_size=hidden_size,num_layers=1, batch_first=True))
+
+        n_in = hidden_size
+        for i in fc_layers:
+            fc_layer.append(nn.Linear(n_in,i))
+            fc_layer.append(nn.ReLU(inplace=True))
+            fc_layer.append(nn.Dropout(p))
+        
+        fc_layer.append(fc_layer[-1],out_size)
+
+        self.hidden = (torch.zeros(1,1,hidden_size),
+                       torch.zeros(1,1,hidden_size))
+        self.lstm = nn.Sequential(*lstm_layer)
+        self.fc = nn.Sequential(*fc_layer)
+
+        
+    def forward(self,x):
+        lstm_out, self.hidden = self.lstm(
+            x, self.hidden)
+        pred = self.fc(lstm_out)
+        return pred
